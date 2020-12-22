@@ -51,8 +51,13 @@ export default class MiniSlider extends Slider{
     }
 
     bindTriggers(){
-        this.next.addEventListener('click',()=>this.nextSlide());
-        this.prev.addEventListener('click',()=>this.prevSlide());
+        this.next.forEach(item=>{
+            item.addEventListener('click',()=>this.nextSlide());
+        });
+        
+        this.prev.forEach(item =>{
+            item.addEventListener('click',()=>this.prevSlide());
+        });
     }   
 
     activeAutoplay(){
@@ -62,21 +67,23 @@ export default class MiniSlider extends Slider{
     }
 
     init(){
-        this.container.style.cssText =`
-            display: flex;
-            flex-wrap: wrap;
-            overflow: hidden;
-            align-items: flex-start;
-        `;
-        this.bindTriggers();
-        this.decorizeSlides();
+        try{
+            this.container.style.cssText =`
+                display: flex;
+                flex-wrap: wrap;
+                overflow: hidden;
+                align-items: flex-start;
+            `;
+            this.bindTriggers();
+            this.decorizeSlides();
 
-        if(this.autoplay){
-            this.activeAutoplay();
-            this.container.addEventListener('mouseenter', ()=>clearInterval(this.paused));
-            this.container.addEventListener('mouseleave',  ()=>this.activeAutoplay());
-        }
+            if(this.autoplay){
+                this.activeAutoplay();
+                this.container.addEventListener('mouseenter', ()=>clearInterval(this.paused));
+                this.container.addEventListener('mouseleave',  ()=>this.activeAutoplay());
+            }
 
+        }catch(e){}
        
 
     }
