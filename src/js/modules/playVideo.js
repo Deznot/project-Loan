@@ -18,7 +18,8 @@ export default class VideoPlayer{
             
 
             btn.addEventListener('click',()=>{
-                if(!btn.closest('.module__video-item') || btn.closest('.module__video-item').getAttribute('data-disabled') !== 'true'){
+                if(!btn.closest('.module__video-item') || 
+                    btn.closest('.module__video-item').getAttribute('data-disabled') !== 'true'){
                     this.activeBtn = btn;
                     if(document.querySelector('iframe#frame')){
                         this.overlay.style.display = 'flex';
